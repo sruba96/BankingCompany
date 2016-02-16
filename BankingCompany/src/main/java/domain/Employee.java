@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -21,42 +23,21 @@ public class Employee
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private long id;
-	
-	@Column(name="firstName", length=10, nullable=true, unique=false)
+
+	@Column(name = "firstName", length = 10, nullable = true, unique = false)
 	private String firstName;
-	
-	@Transient //This field will not add to database
-	private long ignored;
-	
+
 	private String lastName;
+
 	private double salary;
 
-	
-	@Temporal(TemporalType.DATE) // Temporal responsible for convert util.Date to sql.Date
-	private Date date;
-	
-	private java.sql.Date sqlDate;
-	
-	
-	public java.sql.Date getSqlDate()
-	{
-		return sqlDate;
-	}
-
-	public void setSqlDate(java.sql.Date sqlDate)
-	{
-		this.sqlDate = sqlDate;
-	}
-
-	public Date getDate()
-	{
-		return date;
-	}
-
-	public void setDate(Date date)
-	{
-		this.date = date;
-	}
+	/*
+	 * @JoinColumn - This annotation suggest name of column linked in column
+	 * second table. Default name is tableName_id.
+	 */
+	@OneToOne
+	@JoinColumn(name = "addresId")
+	private Address address;
 
 	public long getId()
 	{
@@ -96,6 +77,16 @@ public class Employee
 	public void setSalary(double salary)
 	{
 		this.salary = salary;
+	}
+
+	public Address getAddress()
+	{
+		return address;
+	}
+
+	public void setAddress(Address address)
+	{
+		this.address = address;
 	}
 
 }

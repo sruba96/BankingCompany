@@ -1,4 +1,3 @@
-
 import java.sql.Date;
 
 import javax.persistence.EntityManager;
@@ -7,8 +6,8 @@ import javax.persistence.Persistence;
 
 import org.hibernate.SessionFactory;
 
+import domain.Address;
 import domain.Employee;
-
 
 public class Main
 {
@@ -22,15 +21,24 @@ public class Main
 				.createEntityManager();
 
 		Employee employee = new Employee();
+		Address address = new Address();
+
 		// employee.setId(1l);
 		employee.setFirstName("Paweł");
 		employee.setLastName("Malina");
 		employee.setSalary(20.0);
-		employee.setDate(new Date(new java.util.Date().getTime()));
-		employee.setSqlDate(new Date(new java.util.Date().getTime()));
+		employee.setAddress(address);
+
+		address.setCity("Krakow");
+		address.setNumber(22.0);
 
 		entityManager.getTransaction().begin();
+		/*
+		 * We must save everything, employee and address.
+		 */
 		entityManager.persist(employee);
+		entityManager.persist(address);
+		
 		entityManager.getTransaction().commit();
 
 		entityManager.close();
