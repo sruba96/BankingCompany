@@ -25,6 +25,8 @@ public class FindAndModify
 		
 		employee.setSalary(employee.getSalary()+500); //Here i modified, without persist.
 		
+		entityManager.remove(employee); // Here i deleted the employee. I remove one row.
+		
 		entityManager.getTransaction().commit();
 		
 		entityManager.close();
