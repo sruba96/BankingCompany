@@ -18,10 +18,14 @@ public class Main
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		Employee employee = new Employee();
-		employee.setId(1l);
+		//employee.setId(1l);
 		employee.setFirstName("Paweł");
 		employee.setLastName("Malina");
 		employee.setSalary(20.0);
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(employee);
+		entityManager.getTransaction().commit();
 		
 		entityManager.close();
 		entityManagerFactory.close();
