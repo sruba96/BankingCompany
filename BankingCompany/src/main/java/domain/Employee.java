@@ -28,7 +28,6 @@ public class Employee
 	@Transient //This field will not add to database
 	private long ignored;
 	
-	@Column
 	private String lastName;
 	private double salary;
 

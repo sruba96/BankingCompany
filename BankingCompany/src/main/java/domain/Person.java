@@ -1,5 +1,5 @@
 package domain;
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +14,6 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "Pracownicy")
-@SecondaryTable(name = "Adresy")
 public class Person
 {
 	@Id
@@ -26,11 +25,8 @@ public class Person
 	private String lastName;
 	private double age;
 	
-	@Column(table = "Adresy" , name = "miasta")
-	private String city;
-	
-	@Column(table = "Adresy" , name = "numer")
-	private double address;
+	@Embedded //I puted here other class.
+	private Address data = new Address();
 
 	public long getId()
 	{
@@ -74,21 +70,21 @@ public class Person
 
 	public String getCity()
 	{
-		return city;
+		return data.city;
 	}
 
 	public void setCity(String city)
 	{
-		this.city = city;
+		this.data.city = city;
 	}
 
 	public double getAddress()
 	{
-		return address;
+		return data.address;
 	}
 
 	public void setAddress(double address)
 	{
-		this.address = address;
+		this.data.address = address;
 	}
 }
