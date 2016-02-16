@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import domain.Employee;
@@ -55,19 +56,17 @@ public class JPQLAdvenced
 		}
 
 		/*
-		 * Another option
-		 * Whole list :)
+		 * Another option Whole list :)
 		 */
-		TypedQuery<Employee> query3 = entityManager
-				.createQuery(
-						"select e from Employee e where e.salary in :moneyParameter",
-						Employee.class);
+		TypedQuery<Employee> query3 = entityManager.createQuery(
+				"select e from Employee e where e.salary in :moneyParameter",
+				Employee.class);
 
 		List<Double> moneyList = new ArrayList<Double>();
 		moneyList.add(20.0);
 		moneyList.add(40.0);
 		moneyList.add(520.0);
-       
+
 		query3.setParameter("moneyParameter", moneyList);
 
 		List<Employee> employeeList3 = query3.getResultList();
@@ -78,6 +77,17 @@ public class JPQLAdvenced
 					+ " have salary:" + employee.getSalary());
 		}
 		
+		/*
+		 * JPQL Functions
+		 * 
+		 */
+		Query query4 = entityManager
+				.createQuery("select avg(e.salary), sum(e.salary), count(e) from Employee e");
+		
+		Object[] result = (Object[]) query4.getSingleResult(); // Response is array of objects
+		
+		System.out.println("Average:" +result[0]
+				+ " sum:" + result[1] + " counted:" + result[2]);
 		
 		entityManager.close();
 		entityManagerFactory.close();
