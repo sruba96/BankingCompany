@@ -1,5 +1,7 @@
 
 
+import java.sql.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,6 +24,11 @@ public class Main
 		employee.setFirstName("Paweł");
 		employee.setLastName("Malina");
 		employee.setSalary(20.0);
+		employee.setDate(new Date(new java.util.Date().getTime()));
+		employee.setSqlDate(new Date(new java.util.Date().getTime()));
+		
+		
+		System.out.println(employee.getDate().toString());
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(employee);
