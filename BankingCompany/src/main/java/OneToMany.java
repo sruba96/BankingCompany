@@ -42,10 +42,11 @@ public class OneToMany
 		guy.setPhones(phones);
 
 		entityManager.getTransaction().begin();
-
+		
+		
 		entityManager.persist(guy);
-		entityManager.persist(phone1);
-		entityManager.persist(phone2);
+//		entityManager.persist(phone1); // I use cascade
+//		entityManager.persist(phone2);
 
 		entityManager.getTransaction().commit();
 

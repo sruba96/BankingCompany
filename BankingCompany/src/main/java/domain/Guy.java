@@ -2,12 +2,14 @@ package domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -20,7 +22,7 @@ public class Guy
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "guy")
+	@OneToMany(mappedBy = "guy" , cascade = CascadeType.ALL) // here cascade
 	private List<Phone> phones;
 
 	public long getId()
