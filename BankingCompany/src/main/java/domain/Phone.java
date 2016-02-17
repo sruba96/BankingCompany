@@ -3,6 +3,8 @@ package domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -17,6 +19,19 @@ public class Phone
 	private String type;
 	
 	private Integer number;
+	
+	@OneToMany
+	private Guy guy;
+	
+	public Guy getGuy()
+	{
+		return guy;
+	}
+
+	public void setGuy(Guy guy)
+	{
+		this.guy = guy;
+	}
 
 	public long getId()
 	{

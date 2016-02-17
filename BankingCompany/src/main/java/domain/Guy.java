@@ -20,8 +20,7 @@ public class Guy
 	
 	private String name;
 	
-	@OneToMany
-	@JoinColumn(name = "guyId")
+	@OneToMany(mappedBy = "guy")
 	private List<Phone> phones;
 
 	public long getId()

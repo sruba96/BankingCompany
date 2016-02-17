@@ -31,7 +31,10 @@ public class OneToMany
 		phone1.setNumber(41237842);
 		phone2.setType("home");
 		phone2.setNumber(64723667);
-
+		
+		phone1.setGuy(guy);
+		phone2.setGuy(guy);
+		
 		List<Phone> phones = new ArrayList<Phone>();
 		phones.add(phone1);
 		phones.add(phone2);
