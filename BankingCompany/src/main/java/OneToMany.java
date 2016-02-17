@@ -10,7 +10,7 @@ import domain.Phone;
 
 /**
  * I creating here unidirectional relation OneToMany, i using to entity class
- * Phone and Guy. Phone have List<Phone>.
+ * Phone and Guy. Guy have List<Phone>.
  */
 public class OneToMany
 {
